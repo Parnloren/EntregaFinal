@@ -1,0 +1,15 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %}2° Pre-Entrega | Estudiantes{% endblock titulo %}
+
+{% block contenidoQueCambia %}
+    <form action="/estudiantes/" method="POST">
+        {% csrf_token %}
+        <table>
+            {{mi_formulario.as_table}}
+        <table>
+            <input type="submit" value="Enviar">
+
+<form>
+{% endblock contenidoQueCambia %}
+

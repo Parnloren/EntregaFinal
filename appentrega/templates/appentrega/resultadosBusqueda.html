@@ -1,0 +1,23 @@
+{% extends 'appentrega/base.html' %}
+{% block contenidoQueCambia %}
+
+<h5>Estamos buscando la comisión N°: {{comision}}</h5>
+
+{% if cursos %}
+    <ul>
+        
+        {% for  curso in cursos %}
+            <li> {{curso.nombre}} </li>
+            <li> {{curso.comision}} </li>
+        {% endfor %}
+            
+    </ul>
+{% else %}
+<p>No hay datos con esa descripción</p>
+{% endif %}
+    <p style="color: red;">{{respuesta}}</p>
+    <a class="navbar-brand" href="{% url 'inicio' %}">Ir al buscador</a>
+
+
+{% endblock contenidoQueCambia %}
+
