@@ -1,0 +1,22 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Agregar Entregable {% endblock titulo %}
+{% block titulocentral %} Agregar Entregable {% endblock titulocentral %}
+
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'ListarEntregable' %}">Ver Entregables</a>{% endblock botoncentral %}
+
+
+{% block contenidoQueCambia %}
+<div style="background-color: #d0d5de; color: #1b3d5b">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        <table>
+            <input type="submit" value="Enviar">
+
+<form>
+    <div>
+{% endblock contenidoQueCambia %}
+

@@ -1,0 +1,12 @@
+{% extends 'appentrega/base.html' %}
+
+{% block titulo %}Borrar Cursos{% endblock titulo %}
+{% block titulocentral %} Borrar Cursos {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+<form action="" method="POST">
+        {% csrf_token %}
+        <p>Estás seguro de querer borrar el curso: {{curso.nombre}}</p>
+        <input type="submit" value="Borrar">
+    <form>
+{% endblock contenidoQueCambia %}

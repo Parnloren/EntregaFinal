@@ -1,0 +1,16 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Detalles Profesor {% endblock titulo %}
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'ListarProfesor' %}">Lista de Profesores</a>{% endblock botoncentral %}
+{% block titulocentral %}Detalles Profesor {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+{% csrf_token %}
+<h1>{{ profesor.nombre }}</h1>
+<p><strong>Apellido:</strong> {{ profesor.apellido }}</p>
+<p><strong>Email:</strong> {{ profesor.email }}</p>
+<p><strong>Profesión:</strong> {{ profesor.profesion }}</p>
+
+<a href="{% url 'ListarProfesor' %}">Volver a la lista de profesores</a>
+{% endblock contenidoQueCambia %}
+

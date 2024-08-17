@@ -1,0 +1,34 @@
+{% extends 'appentrega/base.html' %}
+
+{% block titulo %} Lista de Cursos {% endblock titulo %}
+
+{% block botoncentral %}
+<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'CrearCurso' %}">Crear Cursos</a>
+{% endblock botoncentral %}
+
+{% block contenidoQueCambia %}
+
+{% if cursos %}
+{% for curso in cursos %}
+<div style="background-color: #d0d5de; color: #1b3d5b">
+    <p><strong>Nombre:</strong> {{ curso.nombre }}</p>
+    <p><strong>Comisión:</strong> {{ curso.comision }}</p>
+    <a href="{% url 'ActualizarCurso' curso.pk %}">Editar</a>
+    <a href="{% url 'BorrarCurso' curso.pk %}">Borrar</a>
+    <a href="{% url 'DetalleCurso' curso.pk %}">Detalles</a>
+</div>
+{% endfor %}
+{% else %}
+<div style="background-color: #b4c0ce; color: #1b3d5b;">
+<p>No hay cursos disponibles.</p>
+<a href="{% url 'CrearCurso' %}" style="color: #1b3d5b;">Crear un nuevo curso</a>
+</div>
+{% endif %}
+
+{% endblock contenidoQueCambia %}
+
+
+{% block titulocentral %}
+Lista de Cursos 
+{% endblock titulocentral %}
+    

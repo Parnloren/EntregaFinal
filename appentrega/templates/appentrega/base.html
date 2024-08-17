@@ -18,15 +18,15 @@
         <link href="{% static 'appentrega/css/styles.css' %}" 
         rel="stylesheet" />
     </head>
-    <body>
+    <body style="background-color: #b2b8c4">
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
                 <a class="navbar-brand" href="{% url 'inicio' %}">Inicio</a>
-                <a class="navbar-brand" href="{% url 'CursoFormulario' %}">Cursos</a>
-                <a class="navbar-brand" href="{% url 'EntregableFormulario' %}">Entregables</a>
-                <a class="navbar-brand" href="{% url 'EstudianteFormulario' %}">Estudiantes</a>
-                <a class="navbar-brand" href="{% url 'ProfesorFormulario' %}">Profesores</a>
+                <a class="navbar-brand" href="{% url 'ListarCursos' %}">Cursos</a>
+                <a class="navbar-brand" href="{% url 'ListarEntregable' %}">Entregables</a>
+                <a class="navbar-brand" href="{% url 'ListarEstudiante' %}">Estudiantes</a>
+                <a class="navbar-brand" href="{% url 'ListarProfesor' %}">Profesores</a>
                 <a class="btn btn-primary" href="#signup">Sign Up</a>
             </div>
         </nav>
@@ -37,7 +37,11 @@
                     <div class="col-xl-6">
                         <div class="text-center text-white">
                             <!-- Page heading-->
-                            <h1 class="mb-5">Generate more leads with a professional landing page!</h1>
+                            <h1 class="mb-5">
+                            {% block titulocentral %}
+                                
+                            {% endblock titulocentral %}
+                                </h1>
                             <!-- Signup form-->
                             <!-- * * * * * * * * * * * * * * *-->
                             <!-- * * SB Forms Contact Form * *-->
@@ -49,13 +53,10 @@
                             <form class="form-subscribe" id="contactForm" data-sb-form-api-token="API_TOKEN">
                                 <!-- Email address input-->
                                 <div class="row">
-                                    <div class="col">
-                                        <input class="form-control form-control-lg" id="emailAddress" type="email" placeholder="Email Address" data-sb-validations="required,email" />
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:required">Email Address is required.</div>
-                                        <div class="invalid-feedback text-white" data-sb-feedback="emailAddress:email">Email Address Email is not valid.</div>
+                                        <div class="col text-center">
+                                            {% block botoncentral %} {% endblock botoncentral %}
+                                        </div>
                                     </div>
-                                    <div class="col-auto"><button class="btn btn-primary btn-lg disabled" id="submitButton" type="submit">Submit</button></div>
-                                </div>
                                 <!-- Submit success message-->
                                 <!---->
                                 <!-- This is what your users will see when the form-->
@@ -84,37 +85,23 @@
         {% endblock contenidoQueCambia %}
             
         <!-- Footer-->
-        <footer class="footer bg-light">
+        <footer class="footer" style="background-color: #b2b8c4;">
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
                         <ul class="list-inline mb-2">
                             <li class="list-inline-item"><a href="{% url 'inicio' %}">Inicio</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="{% url 'CursoFormulario' %}">Curso</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="{% url 'EntregableFormulario' %}">Entregables</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="{% url 'EstudianteFormulario' %}">Estudiantes</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="{% url 'ProfesorFormulario' %}">Profesores</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
+                            <li class="list-inline-item"><a href="{% url 'ListarCursos' %}">Cursos</a></li>
+                            {% comment %} <li class="list-inline-item"><a href="{% url 'EntregableFormulario' %}">Entregables</a></li> {% endcomment %}
+                            <li class="list-inline-item"><a href="{% url 'ListarEstudiante' %}">Estudiantes</a></li>
+                            <li class="list-inline-item"><a href="{% url 'ListarProfesor' %}">Profesores</a></li>
                         </ul>
-                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2023. All Rights Reserved.</p>
+                        <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2024. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
                         <ul class="list-inline mb-0">
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-facebook fs-3"></i></a>
-                            </li>
-                            <li class="list-inline-item me-4">
-                                <a href="#!"><i class="bi-twitter fs-3"></i></a>
-                            </li>
                             <li class="list-inline-item">
-                                <a href="#!"><i class="bi-instagram fs-3"></i></a>
+                                <a href="https://www.linkedin.com/in/pabloarias12/"><i class="bi-linkedin fs-3"></i></a>
                             </li>
                         </ul>
                     </div>

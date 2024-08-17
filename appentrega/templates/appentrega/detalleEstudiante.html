@@ -1,0 +1,15 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Detalles Estudiante {% endblock titulo %}
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'ListarEstudiante' %}">Lista de Estudiantes</a>{% endblock botoncentral %}
+{% block titulocentral %} Detalles Estudiante {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+{% csrf_token %}
+<h1>{{ estudiante.nombre }}</h1>
+<p><strong>Apellido:</strong> {{ estudiante.apellido }}</p>
+<p><strong>Email:</strong> {{ estudiante.email }}</p>
+
+<a href="{% url 'ListarEstudiante' %}">Volver a la lista de cursos</a>
+{% endblock contenidoQueCambia %}
+

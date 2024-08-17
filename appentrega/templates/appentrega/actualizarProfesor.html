@@ -1,0 +1,16 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Actualizar Profesor{% endblock titulo %}
+{% block titulocentral %} Actualizar Profesor {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        <table>
+            <input type="submit" value="Enviar">
+
+<form>
+{% endblock contenidoQueCambia %}
+

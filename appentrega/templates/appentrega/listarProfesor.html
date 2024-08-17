@@ -1,0 +1,37 @@
+{% extends 'appentrega/base.html' %}
+
+{% block titulo %} Lista de Profesores {% endblock titulo %}
+
+
+{% block botoncentral %}
+<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'CrearProfesor' %}">Agregar Profesores</a>
+{% endblock botoncentral %}
+
+
+{% block contenidoQueCambia %}
+
+{% if profesores %}
+
+{% for profesor in profesores %}
+<div style="background-color: #d0d5de; color: #1b3d5b">
+    <p><strong>Nombre:</strong> {{ profesor.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ profesor.apellido }}</p>
+    <a href="{% url 'ActualizarProfesor' profesor.pk %}">Editar</a>
+    <a href="{% url 'BorrarProfesor' profesor.pk %}">Borrar</a>
+    <a href="{% url 'DetalleProfesor' profesor.pk %}">Detalles</a>
+</div>
+{% endfor %}
+{% else %}
+<div style="background-color: #b4c0ce; color: #1b3d5b;">
+<p>No hay Profesores disponibles.</p>
+<a href="{% url 'CrearProfesor' %}" style="color: #1b3d5b;">Agregar un nuevo profesor</a>
+</div>
+{% endif %}
+
+{% endblock contenidoQueCambia %}
+
+
+{% block titulocentral %}
+Lista de Profesores
+{% endblock titulocentral %}
+    

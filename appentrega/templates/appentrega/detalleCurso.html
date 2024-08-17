@@ -1,0 +1,18 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Detalles Cursos{% endblock titulo %}
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'ListarCursos' %}">Lista de Cursos</a>{% endblock botoncentral %}
+{% block titulocentral %} Detalles Cursos {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+{% csrf_token %}
+<h1>{{ curso.nombre }}</h1>
+<p><strong>Comisión:</strong> {{ curso.comision }}</p>
+<p><strong>Profesor:</strong> {{ curso.profesor }}</p>
+<p><strong>Fecha de Inicio:</strong> {{ curso.fecha_inicio }}</p>
+<p><strong>Fecha de Finalización:</strong> {{ curso.fecha_fin }}</p>
+<p><strong>Descripción:</strong> {{ curso.descripcion }}</p>
+
+<a href="{% url 'ListarCursos' %}">Volver a la lista de cursos</a>
+{% endblock contenidoQueCambia %}
+

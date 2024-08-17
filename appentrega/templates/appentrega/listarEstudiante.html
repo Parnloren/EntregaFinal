@@ -1,0 +1,34 @@
+{% extends 'appentrega/base.html' %}
+
+{% block titulo %} Lista de Estudiantes {% endblock titulo %}
+
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'CrearEstudiante' %}">Agregar Estudiantes</a>{% endblock botoncentral %}
+
+
+{% block contenidoQueCambia %}
+
+{% if estudiantes %}
+
+{% for estudiante in estudiantes %}
+<div style="background-color: #d0d5de; color: #1b3d5b">
+    <p><strong>Nombre:</strong> {{ estudiante.nombre }}</p>
+    <p><strong>Apellido:</strong> {{ estudiante.apellido }}</p>
+    <a href="{% url 'ActualizarEstudiante' estudiante.pk %}">Editar</a>
+    <a href="{% url 'BorrarEstudiante' estudiante.pk %}">Borrar</a>
+    <a href="{% url 'DetalleEstudiante' estudiante.pk %}">Detalles</a>
+</div>
+{% endfor %}
+{% else %}
+<div style="background-color: #b4c0ce; color: #1b3d5b;">
+<p>No hay Estudiantes disponibles.</p>
+<a href="{% url 'CrearEstudiante' %}" style="color: #1b3d5b;">Agregar un nuevo estudiante</a>
+</div>
+{% endif %}
+
+{% endblock contenidoQueCambia %}
+
+
+{% block titulocentral %}
+Lista de Estudiantes
+{% endblock titulocentral %}
+    

@@ -1,0 +1,20 @@
+{% extends 'appentrega/base.html' %}
+{% load static %}
+{% block titulo %} Crear Cursos{% endblock titulo %}
+{% block botoncentral %}<a style= "color: #1b3d5b"class="btn btn-primary btn-lg" href="{% url 'ListarProfesor' %}">Lista de Profesores</a>{% endblock botoncentral %}
+{% block titulocentral %} Crear Cursos {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+<div style="background-color: #d0d5de; color: #1b3d5b">
+
+    <form action="" method="POST">
+        {% csrf_token %}
+        <table>
+            {{form.as_table}}
+        <table>
+            <input type="submit" value="Enviar">
+
+<form>
+    <div>
+{% endblock contenidoQueCambia %}
+

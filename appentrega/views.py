@@ -1,111 +1,133 @@
 from django.shortcuts import render
+from .models import Curso, Profesor, Estudiante, Entregable
+from django.views.generic import ListView
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy
 
 # Create your views here.
-from django.shortcuts import render
-from django.http import HttpResponse
-from appentrega.models import Curso, Profesor, Estudiante, Entregable
-from appentrega.forms import CursoFormulario, ProfesorFormulario, EstudianteFormulario, EntregableFormulario
 
-# Create your views here.
 def inicio(request):
     return render(request, 'appentrega/inicio.html')
-def cursos(request):
-    return render(request, 'appentrega/cursos.html')
 
-def estudiantes(request):
-    return render(request, 'appentrega/estudiantes.html')
 
-def profesores(request):
-    return render(request, 'appentrega/profesores.html')
+# Cursos Views
 
-def entregables(request):
-    return render(request, 'appentrega/entregables.html')
-
-def curso_formulario(request):
-    if request.method ==  "POST":
-
-        miFormulario=CursoFormulario(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            curso = Curso(nombre=informacion['curso'], comision=informacion['comision'])
-            curso.save()
-            return render (request, "appentrega/inicio.html")
-    else:
-        miFormulario = CursoFormulario()
-    return render(request,"appentrega/formcursos.html", {"miFormulario": miFormulario})
-
-def profesor_formulario(request):
-    if request.method ==  "POST":
-
-        miFormulario=ProfesorFormulario(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            profesor = Profesor (nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'], profesion=informacion['profesion'])
-            profesor.save()
-            return render (request, "appentrega/inicio.html")
-    else:
-        miFormulario = ProfesorFormulario()
-    return render(request,"appentrega/formprofesores.html", {"miFormulario": miFormulario})
-
-def estudiante_formulario(request):
-    if request.method ==  "POST":
-
-        miFormulario=EstudianteFormulario(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            estudiante = Estudiante (nombre=informacion['nombre'], apellido=informacion['apellido'], email=informacion['email'])
-            estudiante.save()
-            return render (request, "appentrega/inicio.html")
-    else:
-        miFormulario = EstudianteFormulario()
-    return render(request,"appentrega/formestudiantes.html", {"miFormulario": miFormulario})
+class CursoListView(ListView):
+    model = Curso
+    context_object_name = "cursos"
+    template_name = "appentrega/listarCurso.html"
     
-def entregable_formulario(request):
-    if request.method ==  "POST":
+class CursoCreateView(CreateView):
+    model = Curso
+    context_object_name = "cursos"
+    template_name = "appentrega/createCurso.html"
+    success_url = reverse_lazy("ListarCursos")
+    fields = ["nombre","comision","profesor", "fecha_inicio", "fecha_fin", "descripcion"]
 
-        miFormulario=EntregableFormulario(request.POST)
-        print(miFormulario)
-        if miFormulario.is_valid():
-            informacion = miFormulario.cleaned_data
-            entregable = Entregable (nombre=informacion['nombre'], fecha_de_entrega=informacion['fecha_de_entrega'], entregado=informacion['entregado'])
-            entregable.save()
-            return render (request, "appentrega/inicio.html")
-    else:
-        miFormulario = EntregableFormulario()
-    return render(request,"appentrega/formentregables.html", {"miFormulario": miFormulario})
+class CursoUpdateView(UpdateView):
+    model = Curso
+    context_object_name = "cursos"
+    template_name = "appentrega/actualizarCurso.html"
+    success_url = reverse_lazy("ListarCursos")
+    fields = ["nombre","comision","profesor", "fecha_inicio", "fecha_fin", "descripcion"]
+
+class CursoDeleteView(DeleteView):
+    model = Curso
+    template_name = "appentrega/borrarCurso.html"
+    success_url = reverse_lazy("ListarCursos") 
+
+class CursoDetailView(DetailView):
+    model = Curso
+    template_name = "appentrega/detalleCurso.html"
+
+# Profesores Views
+
+class ProfesorListView(ListView):
+    model = Profesor
+    context_object_name = "profesores"
+    template_name = "appentrega/listarProfesor.html"
     
-def busquedaComision(request):
+class ProfesorCreateView(CreateView):
+    model = Profesor
+    context_object_name = "profesores"
+    template_name = "appentrega/createProfesor.html"
+    success_url = reverse_lazy("ListarProfesor")
+    fields = ["nombre", "apellido", "email", "profesion"]
+    
+class ProfesorUpdateView(UpdateView):
+    model = Profesor
+    context_object_name = "profesores"
+    template_name = "appentrega/actualizarProfesor.html"
+    success_url = reverse_lazy("ListarProfesor")
+    fields = ["nombre", "apellido", "email", "profesion"]
 
-    return render(request, "appentrega/busquedacomision.html")
+class ProfesorDeleteView(DeleteView):
+    model = Profesor
+    template_name = "appentrega/borrarProfesor.html"
+    success_url = reverse_lazy("ListarProfesor") 
 
-def buscar(request):
-    if request.GET["comision"]:
-        # respuesta = f"Estoy buscando la comisión N°: {request.GET['comision'] }"
-        comision = request.GET['comision']
-        cursos = Curso.objects.filter(comision__icontains=comision)
-        return render(request, "appentrega/resultadosBusqueda.html", {"cursos":cursos, "comision":comision})
-    else:
-        respuesta = "No enviaste datos"
+class ProfesorDetailView(DetailView):
+    model = Profesor
+    template_name = "appentrega/detalleProfesor.html"
 
-    # return HttpResponse(respuesta)
-    return render(request, "appentrega/inicio.html", {"cursos":cursos, "comision":comision})
+# Estudiantes Views
+    
+class EstudianteListView(ListView):
+    model = Estudiante
+    context_object_name = "estudiantes"
+    template_name = "appentrega/listarEstudiante.html"
+    
+class EstudianteCreateView(CreateView):
+    model = Estudiante
+    context_object_name = "estudiantes"
+    template_name = "appentrega/createEstudiante.html"
+    success_url = reverse_lazy("ListarEstudiante")
+    fields = ["nombre", "apellido", "email"]
+    
+class EstudianteUpdateView(UpdateView):
+    model = Estudiante
+    context_object_name = "estudiantes"
+    template_name = "appentrega/actualizarEstudiante.html"
+    success_url = reverse_lazy("ListarEstudiante")
+    fields = ["nombre", "apellido", "email"]
 
+class EstudianteDeleteView(DeleteView):
+    model = Estudiante
+    template_name = "appentrega/borrarEstudiante.html"
+    success_url = reverse_lazy("ListarEstudiante") 
 
-# Esto que está a continuaución es la misma estructura pero con etiquetas completamente distintas porque en un inicio pensé que debía multiplicar esto por cada formulario que creara, me pareció curioso dejarlo asentado como muestra de progreso pero lo arreglé porque sería desprolijo y dificil de leer.
-# def curso_formulario(request):
-#     if request.method ==  "POST":
+class EstudianteDetailView(DetailView):
+    model = Estudiante
+    template_name = "appentrega/detalleEstudiante.html"
 
-#         form_curso=CursoFormulario(request.POST)
-#         print(form_curso)
-#         if form_curso.is_valid():
-#             form_curso_cleaned = form_curso.cleaned_data
-#         curso = Curso(nombre=form_curso_cleaned['curso'], comision=form_curso_cleaned['comision'])
-#         curso.save()
+# Entregables Views
+    
+class EntregableListView(ListView):
+    model = Entregable
+    context_object_name = "entregables"
+    template_name = "appentrega/listarEntregable.html"
+    
+class EntregableCreateView(CreateView):
+    model = Entregable
+    context_object_name = "entregables"
+    template_name = "appentrega/createEntregable.html"
+    success_url = reverse_lazy("ListarEntregable")
+    fields = ["nombre", "fecha_de_entrega", "entregado"]
+    
+class EntregableUpdateView(UpdateView):
+    model = Entregable
+    context_object_name = "entregables"
+    template_name = "appentrega/actualizarEntregable.html"
+    success_url = reverse_lazy("ListarEntregable")
+    fields = ["nombre", "fecha_de_entrega", "entregado"]
 
-#         return render (request, "appentrega/base.html")
-#     else:
-#         mi_formulario = CursoFormulario()
-#     return render(request,"appentrega/formcursos.html", {"form_curso": mi_formulario})
+class EntregableDeleteView(DeleteView):
+    model = Entregable
+    template_name = "appentrega/borrarEntregable.html"
+    success_url = reverse_lazy("ListarEntregable") 
+
+class EntregableDetailView(DetailView):
+    model = Entregable
+    template_name = "appentrega/detalleEntregable.html"
+

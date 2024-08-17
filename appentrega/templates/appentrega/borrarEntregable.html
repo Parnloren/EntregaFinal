@@ -1,0 +1,12 @@
+{% extends 'appentrega/base.html' %}
+
+{% block titulo %} Borrar Entregable{% endblock titulo %}
+{% block titulocentral %} Borrar Entregable {% endblock titulocentral %}
+
+{% block contenidoQueCambia %}
+<form action="" method="POST">
+        {% csrf_token %}
+        <p>Estás seguro de querer borrar la información del entregable: {{entregable.nombre}}</p>
+        <input type="submit" value="Borrar">
+    <form>
+{% endblock contenidoQueCambia %}

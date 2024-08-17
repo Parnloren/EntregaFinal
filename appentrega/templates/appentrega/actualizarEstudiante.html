@@ -1,12 +1,13 @@
 {% extends 'appentrega/base.html' %}
 {% load static %}
-{% block titulo %}2° Pre-Entrega | Estudiantes{% endblock titulo %}
+{% block titulo %} Actualizar Estudiante{% endblock titulo %}
+{% block titulocentral %} Actualizar Estudiante {% endblock titulocentral %}
 
 {% block contenidoQueCambia %}
-    <form action="/estudiantes/" method="POST">
+    <form action="" method="POST">
         {% csrf_token %}
         <table>
-            {{mi_formulario.as_table}}
+            {{form.as_table}}
         <table>
             <input type="submit" value="Enviar">
 

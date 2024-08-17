@@ -17,7 +17,11 @@
 {% endif %}
     <p style="color: red;">{{respuesta}}</p>
     <a class="navbar-brand" href="{% url 'inicio' %}">Ir al buscador</a>
-
+{% comment %} 
+Aquí ^^ arriba quise hacer un botón que lleve al inicio para poder acceder al buscador mas cómodamente, 
+pero para hacerlo con type button necesitaba usar código que encontré en internet, no estaba seguro de si se podía hacer.
+Así que lo realicé copiando y pegando parte del base.html, sé que no se hace de esta manera pero funcionó sin introducir algo externo.
+{% endcomment %}
 
 {% endblock contenidoQueCambia %}
 
