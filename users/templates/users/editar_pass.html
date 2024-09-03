@@ -1,0 +1,26 @@
+{% extends 'appentrega/base.html' %}
+
+{% load static %}
+
+{% block titulo %}Editar Contraseña{% endblock titulo %}
+
+{% block contenidoQueCambia %}
+    <div  class="d-flex justify-content-center">
+        <div class="d-flex flex-column">
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form }}
+                </table>
+                <input type="submit" value="Actualizar">
+
+            </form>
+
+        </div>
+    </div>
+{% endblock contenidoQueCambia %}
+
+{% block titulocentral %}
+    Editar Contraseña
+{% endblock titulocentral %}

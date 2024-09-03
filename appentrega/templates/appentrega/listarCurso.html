@@ -9,15 +9,32 @@
 {% block contenidoQueCambia %}
 
 {% if cursos %}
+<div class="container">
+    <div class="row">
 {% for curso in cursos %}
-<div style="background-color: #d0d5de; color: #1b3d5b">
+        <div class="col-sm-4 mb-3">
+<div class="card" style="background-color: #d0d5de; color: #1b3d5b" >
+    <div class="card-body">
+        <h5 class="card-title">{{ curso.nombre }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Comisión:</strong> {{ curso.comision }}</h6>
+
+        <a href="{% url 'ActualizarCurso' curso.pk %}" class="card-link">Editar</a>
+        <a href="{% url 'BorrarCurso' curso.pk %}" class="card-link">Borrar</a>
+        <a href="{% url 'DetalleCurso' curso.pk %}" class="card-link">Detalles</a>
+    </div>
+</div>
+</div>
+
+{% comment %} <div style="background-color: #d0d5de; color: #1b3d5b">
     <p><strong>Nombre:</strong> {{ curso.nombre }}</p>
     <p><strong>Comisión:</strong> {{ curso.comision }}</p>
     <a href="{% url 'ActualizarCurso' curso.pk %}">Editar</a>
     <a href="{% url 'BorrarCurso' curso.pk %}">Borrar</a>
     <a href="{% url 'DetalleCurso' curso.pk %}">Detalles</a>
-</div>
+</div> {% endcomment %}
 {% endfor %}
+</div>
+</div>
 {% else %}
 <div style="background-color: #b4c0ce; color: #1b3d5b;">
 <p>No hay cursos disponibles.</p>
@@ -26,6 +43,20 @@
 {% endif %}
 
 {% endblock contenidoQueCambia %}
+
+
+{% comment %} <div class="card" style="width: 18rem; background-color: #d0d5de; color: #1b3d5b" >
+    <div class="card-body">
+        <h5 class="card-title">{{ curso.nombre }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">Comisión:</strong> {{ curso.comision }}</h6>
+
+        <a href="{% url 'ActualizarCurso' curso.pk %}" class="card-link">Editar</a>
+        <a href="{% url 'BorrarCurso' curso.pk %}" class="card-link">Borrar</a>
+        <a href="{% url 'DetalleCurso' curso.pk %}" class="card-link">Detalles</a>
+    </div>
+</div>
+
+ {% endcomment %}
 
 
 {% block titulocentral %}

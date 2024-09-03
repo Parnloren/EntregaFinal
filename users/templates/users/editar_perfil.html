@@ -1,0 +1,27 @@
+{% extends 'appentrega/base.html' %}
+
+{% load static %}
+
+{% block titulo %}Editar Perfil{% endblock titulo %}
+
+{% block contenidoQueCambia %}
+    <div  class="d-flex justify-content-center">
+        <div class="d-flex flex-column">
+
+            <form action="" method="POST" enctype="multipart/form-data">
+                {% csrf_token %}
+                <table>
+                    {{ form.as_table }}
+                </table>
+                <input type="submit" value="Actualizar">
+                <a class="navbar-brand" href="{% url 'EditarContrasenia' %}">Cambiar Contraseña</a>
+
+            </form>
+
+        </div>
+    </div>
+{% endblock contenidoQueCambia %}
+
+{% block titulocentral %}
+    Editar Perfil
+{% endblock titulocentral %}

@@ -1,14 +1,9 @@
 from django.urls import path
-from appentrega.views import inicio
-# cursos, estudiantes, profesores, entregables, curso_formulario, profesor_formulario, estudiante_formulario, entregable_formulario, busquedaComision, buscar
+from appentrega.views import inicio, about
 from appentrega import views
 urlpatterns = [
-#     path('cursoss/', cursos, name='cursos'),
     path('', inicio, name='inicio'),
-#     path('estudiantess/', estudiantes, name='estudiantes'),
-#     path('entregabless/', entregables, name='entregables'),
-#     path('busquedaComision', busquedaComision, name="BusquedaComision"),
-#     path('buscar/', buscar),
+    path('about/', about, name='About'),
     
     #Cursos
 
